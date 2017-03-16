@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jsoup.Jsoup;
 
-
+import com.omdbapi.Movie;
 import com.omdbapi.Omdb;
 import com.omdbapi.OmdbConnectionErrorException;
 import com.omdbapi.OmdbMovieNotFoundException;
@@ -49,7 +49,11 @@ public class servletClass extends HttpServlet {
 		else if(request.getParameter("button2") != null) {
             
 				try {
-					f.search(response,_moviename);
+					Movie m = new Movie();					
+					m=f.search(response,_moviename);
+					
+					PrintWriter out = response.getWriter();
+					out.print(_moviename+" rating -> 8");
 				} catch (Exception ignore) {
 					// TODO Auto-generated catch block
 					ignore.printStackTrace();
@@ -73,22 +77,25 @@ public class servletClass extends HttpServlet {
 			final String title = row.select(".titleColumn").text();
 			final String rating = row.select(".imdbRating").text();
 			PrintWriter out = response.getWriter();
-			out.print(title +" -> rating"+rating+ "\n");
+			out.print(title +" -> rating"+ rating+ "\n");
 			
 	}
 	
 		
 }
-	public void search(HttpServletResponse response, String moviename) throws OmdbSyntaxErrorException, OmdbConnectionErrorException, OmdbMovieNotFoundException, IOException{
+	public Movie search(HttpServletResponse response, String moviename) throws OmdbSyntaxErrorException, OmdbConnectionErrorException, OmdbMovieNotFoundException, IOException{
 		
 			Omdb o = new Omdb();
-		
+			Movie m = new Movie();
 		try {
-			o.searchOneMovie(moviename);
+			
+			m = o.searchOneMovie(moviename);
+			
 			
 		} catch (Exception ignore) {
 			
 		}
+		return m;
 		
 		
 		

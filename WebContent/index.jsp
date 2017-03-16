@@ -5,9 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>IMDB Search Engine</title>
-<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-
-   <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+<link href ="bootstrap.css" type = "text/css" rel = "stylesheet">
 </head>
 
 <body><br><br><br>
